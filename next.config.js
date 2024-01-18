@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    apiKey: ""
+    apiKey: "live_vyZA32nnKlXi2b5g8xeMfTfc0CgVfiprA3F8Vk5PcQp9mqfqKclSG74bmT0R4mOY"
   },
   images: {
     remotePatterns: [
