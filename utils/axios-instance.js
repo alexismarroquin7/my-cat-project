@@ -1,9 +1,9 @@
 import axios from "axios"
 
-export const axiosInstance = () => {
+export const axiosInstance = (apiKey) => {
   return axios.create({
     headers: {
-      'x-api-key': process.env.apiKey,
+      'x-api-key': apiKey,
       'Access-Control-Allow-Origin': true
     },
     baseURL: "https://api.thecatapi.com/v1"
