@@ -1,5 +1,6 @@
-import { useEffect, useReducer, useState } from "react";
+import { useReducer } from "react";
 import { axiosInstance } from "../utils";
+import { useLocalStorage } from ".";
 
 const initialState = {
   error: {
@@ -54,13 +55,14 @@ const reducer = (state, action) => {
 export const useCatService = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [apiKey, setApiKey] = useLocalStorage('api-key', "");
   
   async function getRandomImageList ({limit}) {
     dispatch({
       type: ACTION.GET_RANDOM_IMAGE_LIST.START
     })
     try {
-      const res = await axiosInstance().get(`/images/search?limit=${limit}`)
+      const res = await axiosInstance(apiKey).get(`/images/search?limit=${limit}`)
       dispatch({
         type: ACTION.GET_RANDOM_IMAGE_LIST.SUCCESS,
         payload: {

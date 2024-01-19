@@ -1,10 +1,12 @@
-import { RandomCatImage } from "../widgets"
-
+import Link from "next/link";
 
 export default function Home() {
+
   return (
     <main>
-      <RandomCatImage/>      
+      <Link
+        href="/random-cat-image"
+      >Random Cat Image</Link>      
     </main>
   )
 }
