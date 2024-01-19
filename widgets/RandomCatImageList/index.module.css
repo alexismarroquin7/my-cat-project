@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.root__label {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.root__imagelist {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.root__imagecontainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.root__image {
+  border-radius: 2rem;
+}

@@ -1,11 +1,22 @@
 "use client"
-import { useState } from "react"
-import { useLocalStorage } from "../../hooks"
+import { useEffect, useState } from "react"
+import { useToggle } from "../../hooks"
 
-export const ApiKeyForm = () => {
-  const [apiKey, setApiKey] = useLocalStorage('api-key', "1234")
+export const ApiKeyForm = ({apiKey, setApiKey}) => {
+  
+
+  const {
+    active: editing,
+    toggleActive: toggleEditing
+  } = useToggle(false);
 
   const [values, setValues] = useState({apiKey});
+
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const handleChange = (e) => {
     setValues({
@@ -16,26 +27,40 @@ export const ApiKeyForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setApiKey(values.apiKey)
+    setApiKey(values.apiKey.trim())
+    toggleEditing()
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <label
-        htmlFor="apiKey"
+    <>
+    {isClient && editing && (
+      <form
+        onSubmit={handleSubmit}
       >
-        Enter api key
-        <input
-          id="apiKey"
-          type="text"
-          name={"apiKey"}
-          value={values.apiKey}
-          onChange={handleChange}
-        />
-      </label>
-      <button>Submit</button>
-    </form>
+        <label
+          htmlFor="apiKey"
+        >
+          Enter api key
+          <input
+            id="apiKey"
+            type="text"
+            name={"apiKey"}
+            value={values.apiKey}
+            onChange={handleChange}
+          />
+        </label>
+        <button>Submit</button>
+      </form>
+    )}
+
+    {isClient && !editing && (
+      <div>
+        <p>Api Key: {apiKey !== "" ? apiKey : "Not Set"}</p>
+        <button
+          onClick={toggleEditing}
+        >Edit</button>
+      </div>
+    )}     
+    </>
   )
 }

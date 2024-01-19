@@ -1,12 +1,12 @@
-import { ApiKeyForm, RandomCatImage } from "../widgets"
-
+import Link from "next/link";
 
 export default function Home() {
 
   return (
     <main>
-      <ApiKeyForm />
-      {/* <RandomCatImage/>       */}
+      <Link
+        href="/random-cat-image"
+      >Random Cat Image</Link>      
     </main>
   )
 }

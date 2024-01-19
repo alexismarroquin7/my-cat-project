@@ -1,2 +1,2 @@
 export * from "./ApiKeyForm"
-export * from "./RandomCatImage"
+export * from "./RandomCatImageList"
